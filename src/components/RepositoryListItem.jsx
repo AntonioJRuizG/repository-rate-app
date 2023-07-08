@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native';
+import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
 	container: {
@@ -16,14 +17,16 @@ const styles = StyleSheet.create({
 const RepositoryListItem = (item) => {
 	return (
 		<View key={item.id} style={styles.container}>
-			<Text style={styles.strong}>id: {item.id}</Text>
-			<Text>FullName {item.fullName}</Text>
-			<Text>Description: {item.description}</Text>
-			<Text>Languaje: {item.language}</Text>
-			<Text>Starts: {item.stargazersCount}</Text>
-			<Text>Forks: {item.forksCount}</Text>
-			<Text>Review: {item.reviewCount}</Text>
-			<Text>Rating: {item.ratingAverage}</Text>
+			<StyledText big bold>
+				id: {item.id}
+			</StyledText>
+			<StyledText blue>FullName {item.fullName}</StyledText>
+			<StyledText blue>Description: {item.description}</StyledText>
+			<StyledText blue>Languaje: {item.language}</StyledText>
+			<StyledText blue>Starts: {item.stargazersCount}</StyledText>
+			<StyledText small>Forks: {item.forksCount}</StyledText>
+			<StyledText small>Review: {item.reviewCount}</StyledText>
+			<StyledText small>Rating: {item.ratingAverage}</StyledText>
 		</View>
 	);
 };
