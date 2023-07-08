@@ -1,32 +1,47 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import theme from '../theme';
 
 const styles = StyleSheet.create({
 	text: {
-		fontSize: 12,
-		color: 'grey',
+		fontSize: theme.fontSizes.body,
+		color: theme.colors.textPrimary,
+		fontFamily: theme.fonts.main,
+		fontWeight: theme.fontWeigths.normal,
 	},
 	bold: {
-		fontWeight: 'bold',
+		fontWeight: theme.fontWeigths.bold,
 	},
-	blue: {
-		color: 'blue',
+	colorPrimary: {
+		color: theme.colors.primary,
 	},
-	big: {
-		fontSize: 20,
+	colorSecondary: {
+		color: theme.colors.textSecondary,
 	},
-	small: {
-		fontSize: 10,
+
+	subheading: {
+		fontSize: theme.fontSizes.subheading,
 	},
 });
 
-export default function StyledText({ blue, bold, big, small, children }) {
+export default function StyledText({
+	children,
+	color,
+	fontSize,
+	fontWeight,
+	style,
+	...restOfProps
+}) {
 	const textStyles = [
 		styles.text,
-		blue && styles.blue,
-		bold && styles.bold,
-		big && styles.big,
-		small & styles.small,
+		color === 'primary' && styles.colorPrimary,
+		color === 'secondary' && styles.colorSecondary,
+		fontSize === 'subheading' && styles.subheading,
+		fontWeight === 'bold' && styles.bold,
 	];
-	return <Text style={textStyles}>{children}</Text>;
+	return (
+		<Text style={textStyles} {...restOfProps}>
+			{children}
+		</Text>
+	);
 }
