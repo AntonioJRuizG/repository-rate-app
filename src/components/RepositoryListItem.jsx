@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import StyledText from './StyledText';
 
 const styles = StyleSheet.create({
@@ -9,6 +9,29 @@ const styles = StyleSheet.create({
 	},
 });
 
+const RepositoryStats = (props) => {
+	return (
+		<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+			<View>
+				<StyledText fontWeight='bold'>Starts</StyledText>
+				<StyledText>{props.stargazersCount}</StyledText>
+			</View>
+			<View>
+				<StyledText fontWeight='bold'>Forks</StyledText>
+				<StyledText>{props.forksCount}</StyledText>
+			</View>
+			<View>
+				<StyledText fontWeight='bold'>Review</StyledText>
+				<StyledText>{props.reviewCount}</StyledText>
+			</View>
+			<View>
+				<StyledText fontWeight='bold'>Rating</StyledText>
+				<StyledText>{props.ratingAverage}</StyledText>
+			</View>
+		</View>
+	);
+};
+
 const RepositoryListItem = (item) => {
 	return (
 		<View key={item.id} style={styles.container}>
@@ -17,10 +40,7 @@ const RepositoryListItem = (item) => {
 			</StyledText>
 			<StyledText>{item.description}</StyledText>
 			<StyledText>{item.language}</StyledText>
-			<StyledText>Starts: {item.stargazersCount}</StyledText>
-			<StyledText>Forks: {item.forksCount}</StyledText>
-			<StyledText>Review: {item.reviewCount}</StyledText>
-			<StyledText>Rating: {item.ratingAverage}</StyledText>
+			<RepositoryStats {...item}></RepositoryStats>
 		</View>
 	);
 };

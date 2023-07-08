@@ -22,10 +22,14 @@ const styles = StyleSheet.create({
 	subheading: {
 		fontSize: theme.fontSizes.subheading,
 	},
+	textAlignCenter: {
+		textAlign: 'center',
+	},
 });
 
 export default function StyledText({
 	children,
+	align,
 	color,
 	fontSize,
 	fontWeight,
@@ -34,6 +38,7 @@ export default function StyledText({
 }) {
 	const textStyles = [
 		styles.text,
+		align === 'center' && styles.textAlignCenter,
 		color === 'primary' && styles.colorPrimary,
 		color === 'secondary' && styles.colorSecondary,
 		fontSize === 'subheading' && styles.subheading,
