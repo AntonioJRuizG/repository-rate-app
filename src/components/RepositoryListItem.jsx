@@ -1,16 +1,42 @@
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import StyledText from './StyledText';
 import RepositoryStats from './RepositoryStats';
 import theme from '../theme';
 
+const RepositoryItemHeader = ({
+	ownerAvatarUrl,
+	fullName,
+	description,
+	language,
+}) => {
+	return (
+		<View
+			style={{
+				flexDirection: 'row',
+				paddingBottom: 2,
+				gap: 5,
+				alignItems: 'flex-start',
+			}}
+		>
+			<View style={{ flex: 0 }}>
+				{/* Image needs to be styled to appear on screen */}
+				<Image style={styles.image} source={{ uri: ownerAvatarUrl }}></Image>
+			</View>
+			<View style={{ flexGrow: 1 }}>
+				<StyledText fontWeight='bold' fontSize='subheading'>
+					{fullName}
+				</StyledText>
+				<StyledText color='secondary'>{description}</StyledText>
+				<StyledText style={styles.language}>{language}</StyledText>
+			</View>
+		</View>
+	);
+};
+
 const RepositoryListItem = (item) => {
 	return (
 		<View key={item.id} style={styles.container}>
-			<StyledText fontWeight='bold' fontSize='subheading'>
-				{item.fullName}
-			</StyledText>
-			<StyledText>{item.description}</StyledText>
-			<StyledText style={styles.language}>{item.language}</StyledText>
+			<RepositoryItemHeader {...item}></RepositoryItemHeader>
 			<RepositoryStats {...item}></RepositoryStats>
 		</View>
 	);
@@ -29,6 +55,13 @@ const styles = StyleSheet.create({
 		alignSelf: 'flex-start',
 		borderRadius: 4,
 		overflow: 'hidden', // To make the borderRadius work
+		marginBottom: 4,
+		marginTop: 4,
+	},
+	image: {
+		width: 48,
+		height: 48,
+		borderRadius: 4,
 	},
 });
 
