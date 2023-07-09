@@ -54,4 +54,16 @@ export default [
 		reviewCount: 0,
 		ownerAvatarUrl: 'https://avatars3.githubusercontent.com/u/13142323?v=4',
 	},
+	{
+		id: 'antonio.ruiz.dev',
+		fullName: 'ajruiz/ajruiz',
+		description: 'Development projects',
+		language: 'JavaScript',
+		forksCount: 1200,
+		stargazersCount: 2088,
+		ratingAverage: 0,
+		reviewCount: 0,
+		ownerAvatarUrl:
+			'https://avatars.githubusercontent.com/u/113633074?s=60&v=4',
+	},
 ];
