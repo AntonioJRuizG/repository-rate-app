@@ -4,11 +4,12 @@ import {
 	StyleSheet,
 	View,
 	TouchableWithoutFeedback,
+	ScrollView,
 } from 'react-native';
 import StyledText from './StyledText';
 import theme from '../theme';
 import Constants from 'expo-constants';
-import { Link } from 'react-router-native';
+import { Link, useLocation } from 'react-router-native';
 
 const styles = StyleSheet.create({
 	container: {
@@ -29,10 +30,14 @@ const styles = StyleSheet.create({
 	},
 });
 
-const AppBarTab = ({ active, children, to }) => {
+const AppBarTab = ({ children, to }) => {
+	const { pathname } = useLocation();
+	const active = pathname === to;
+	const textStyles = [styles.text, active && styles.active];
+
 	return (
 		<Link to={to} component={TouchableWithoutFeedback}>
-			<StyledText fontWeight='bold' style={styles.text}>
+			<StyledText fontWeight='bold' style={textStyles}>
 				{children}
 			</StyledText>
 		</Link>
@@ -42,12 +47,10 @@ const AppBarTab = ({ active, children, to }) => {
 const AppBar = () => {
 	return (
 		<View style={styles.container}>
-			<AppBarTab active to='/'>
-				Repositories
-			</AppBarTab>
-			<AppBarTab active to='/signin'>
-				Sign in
-			</AppBarTab>
+			<ScrollView horizontal>
+				<AppBarTab to='/'>Repositories</AppBarTab>
+				<AppBarTab to='/signin'>Sign in</AppBarTab>
+			</ScrollView>
 		</View>
 	);
 };
