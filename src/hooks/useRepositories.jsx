@@ -1,22 +1,11 @@
 import { useEffect, useState } from 'react';
+import getRepositories from '../services/repositoriesRepo';
 
 const useRepositories = () => {
 	const [repositories, setRepositories] = useState(null);
 
 	const fetchRepositories = async () => {
-		const response = await global
-			.fetch('https://rate-repository-api-nng9.onrender.com/api/repositories')
-			.catch((error) => {
-				console.log(error);
-				return;
-			});
-
-		if (response === undefined) return;
-
-		const data = await response.json().catch((error) => {
-			console.log(error);
-		});
-
+		const data = await getRepositories();
 		setRepositories(data);
 	};
 
