@@ -1,8 +1,14 @@
 import React from 'react';
-import { ViewProps, StyleSheet, View } from 'react-native';
+import {
+	ViewProps,
+	StyleSheet,
+	View,
+	TouchableWithoutFeedback,
+} from 'react-native';
 import StyledText from './StyledText';
 import theme from '../theme';
 import Constants from 'expo-constants';
+import { Link } from 'react-router-native';
 
 const styles = StyleSheet.create({
 	container: {
@@ -23,12 +29,25 @@ const styles = StyleSheet.create({
 	},
 });
 
+const AppBarTab = ({ active, children, to }) => {
+	return (
+		<Link to={to} component={TouchableWithoutFeedback}>
+			<StyledText fontWeight='bold' style={styles.text}>
+				{children}
+			</StyledText>
+		</Link>
+	);
+};
+
 const AppBar = () => {
 	return (
 		<View style={styles.container}>
-			<StyledText fontWeight='bold' style={styles.text}>
+			<AppBarTab active to='/'>
 				Repositories
-			</StyledText>
+			</AppBarTab>
+			<AppBarTab active to='/signin'>
+				Sign in
+			</AppBarTab>
 		</View>
 	);
 };
